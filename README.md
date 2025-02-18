@@ -67,5 +67,4 @@ Copy and paste the following commands into your terminal:
    # Verify the pods in the project namespace
    kubectl get pods -n project-3-cloud
 
-
-# Enjoy your deployment! If you run into any issues or have questions, please contact me at itaybor15@gmail.com.
+Enjoy your deployment! If you run into any issues or have questions, please contact me at itaybor15@gmail.com.
