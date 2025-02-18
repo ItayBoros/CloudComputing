@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: stocks-app
+  namespace: project-3-cloud
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stocks-app
+  template:
+    metadata:
+      labels:
+        app: stocks-app
+    spec:
+      containers:
+        - name: stocks-app
+          image: stocks-app:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MONGO_DB_NAME
+              value: "stocks"
+          ports:
+            - containerPort: 8000

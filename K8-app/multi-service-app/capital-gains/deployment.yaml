@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: capital-gains-service
+  namespace: project-3-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: capital-gains-service
+  template:
+    metadata:
+      labels:
+        app: capital-gains-service
+    spec:
+      containers:
+        - name: capital-gains-service
+          image: capital-gains-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
