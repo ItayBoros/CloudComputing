@@ -1,0 +1,75 @@
+version: '3'
+
+services:
+  stocks1-a:
+    build: ./stocks
+    restart: always # always restart the container
+    volumes:
+      - type: bind
+        source: ./stocks # host directory
+        target: /stocks # container directory
+    environment:
+      - MONGO_DB_NAME=stocks1
+    ports:
+      - "5001:8000"  # Map to external port 5001
+    expose:
+      - 8000
+
+  stocks1-b:
+    build: ./stocks
+    restart: always # always restart the container
+    volumes:
+      - type: bind
+        source: ./stocks # host directory
+        target: /stocks # container directory
+    environment:
+      - MONGO_DB_NAME=stocks1
+      # Map to external port 5001
+    expose:
+      - 8000
+
+  stocks2:
+    build: ./stocks # path is relative to docker-compose-shorthand.yml location
+    restart: always # always restart the container
+    volumes:
+      - type: bind
+        source: ./stocks # host directory
+        target: /stocks # container directory
+    environment:
+      - MONGO_DB_NAME=stocks2
+    ports:
+      - "5002:8000" # host:container
+    expose:
+      - 8000
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+  capitalgains:
+    build: ./capitalGain # path is relative to docker-compose-shorthand.yml location
+    restart: always # always restart the container
+    volumes:
+      - type: bind
+        source: ./capitalGain # host directory
+        target: /capitalGains # container directory
+    environment:
+      - FLASK_RUN_PORT=8080
+    ports:
+      - "5003:8080" # host:container
+    expose:
+      - 8080
+    depends_on:
+      - "stocks1-a"
+      - "stocks2"
+
+  nginx:
+     build: ./proxy
+     restart: always # always restart the container
+     ports:
+        - "80:8000" # host:container
+     depends_on:
+       - "stocks1-a"
+       - "stocks1-b"
+       - "stocks2"
