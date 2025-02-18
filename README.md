@@ -15,9 +15,16 @@ This project is part of my cloud computing course and includes Dockerized servic
    ```bash
    git clone https://github.com/ItayBoros/CloudComputing.git
    cd CloudComputing
+   ```
 2.	Add your NINJA API KEY where required.
-3.	Build and run the services: docker compose up --build
-4.	Verify that everything is running: docker ps
+3.	Build and run the services:
+   ```bash
+   docker compose up --build
+   ```
+5.	Verify that everything is running:
+   ```bash
+   docker ps
+   ```
 
 
 # Kubernetes Project 🚀
@@ -66,5 +73,5 @@ Copy and paste the following commands into your terminal:
 
    # Verify the pods in the project namespace
    kubectl get pods -n project-3-cloud
-
+   ```
 Enjoy your deployment! If you run into any issues or have questions, please contact me at itaybor15@gmail.com.
