@@ -27,43 +27,45 @@ This project sets up a cloud-native application using Kubernetes (K8s) for conta
 ## 🔧 Manual Deployment
 
 Copy and paste the following commands into your terminal:
-### Delete any existing Kind cluster
-kind delete cluster
+   ```bash
+   # Delete any existing Kind cluster
+   kind delete cluster
 
-### Create a new Kind cluster with the specified configuration
-kind create cluster --config kind-config.yaml
+   # Create a new Kind cluster with the specified configuration
+   kind create cluster --config kind-config.yaml
 
-### Apply the namespace configuration
-kubectl apply -f namespace.yaml
+   # Apply the namespace configuration
+   kubectl apply -f namespace.yaml
 
-### Deploy the Stocks Application
-cd stocks
-docker build -t stocks-app:latest .
-kind load docker-image stocks-app:latest
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
+   # Deploy the Stocks Application
+   cd stocks
+   docker build -t stocks-app:latest .
+   kind load docker-image stocks-app:latest
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
 
-### Deploy the Capital Gains Service
-cd ../capital-gains
-docker build -t capital-gains-service:latest .
-kind load docker-image capital-gains-service:latest
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
+   # Deploy the Capital Gains Service
+   cd ../capital-gains
+   docker build -t capital-gains-service:latest .
+   kind load docker-image capital-gains-service:latest
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
 
-### Deploy the Database
-cd ../database
-kubectl apply -f PersistentVolume.yaml
-kubectl apply -f PersistentVolumeClaim.yaml
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
+   # Deploy the Database
+   cd ../database
+   kubectl apply -f PersistentVolume.yaml
+   kubectl apply -f PersistentVolumeClaim.yaml
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
 
-### Deploy Nginx and its configuration
-cd ../nginx
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-kubectl apply -f configMap.yaml
+   # Deploy Nginx and its configuration
+   cd ../nginx
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
+   kubectl apply -f configMap.yaml
 
-### Verify the pods in the project namespace
-kubectl get pods -n project-3-cloud
+   # Verify the pods in the project namespace
+   kubectl get pods -n project-3-cloud
+
 
 # Enjoy your deployment! If you run into any issues or have questions, please contact me at itaybor15@gmail.com.
