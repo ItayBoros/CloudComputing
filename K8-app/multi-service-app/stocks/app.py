@@ -1,6 +1,6 @@
 import os
 import pymongo
-from pymongo.errors import DuplicateKeyError  # <--- NEW IMPORT for handling duplicates
+from pymongo.errors import DuplicateKeyError 
 from flask import Flask, jsonify, request
 import uuid
 from datetime import datetime
